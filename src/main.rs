@@ -1,0 +1,5 @@
+use passerine;
+
+fn main() {
+
+}

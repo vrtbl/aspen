@@ -1,0 +1,16 @@
+[package]
+name = "aspen"
+version = "0.0.1"
+authors = ["Isaac Cayton (slightknack) <slightknack@gmail.com>"]
+edition = "2018"
+description = "Passerine's package manager."
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/passerine-lang/aspen"
+
+[dependencies]
+passerine = "0.6"
+structopt = "0.3.15"
+serde     = { version = "1.0", features = ["derive"] }
+toml      = "0.5"
+semver    = "0.10"
