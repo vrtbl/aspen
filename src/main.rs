@@ -1,4 +1,5 @@
 use passerine;
+use structopt::StructOpt;
 
 // argument parser and configuation
 pub mod cli;
@@ -14,6 +15,9 @@ pub mod bench;
 pub mod doc;
 pub mod debug;
 
+use cli::Aspen;
+
 fn main() {
-    todo!();
+    let args = Aspen::from_args();
+    println!("{:?}", args);
 }

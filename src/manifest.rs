@@ -6,7 +6,7 @@ use semver::Version;
 #[derive(Serialize, Deserialize)]
 pub struct Manifest {
     package: Package,
-    dependencies: Map,
+    dependencies: Map<String, toml::Value>,
 }
 
 #[derive(Serialize, Deserialize)]
@@ -30,11 +30,17 @@ impl Manifest {
                 name,
                 version: format!("{}", Version::new(0, 0, 0)),
                 authors: vec![],
-            }
+                readme: None,
+                license: None,
+                repository: None,
+                documentation: None,
+            },
+            dependencies: Map::new(),
         }
     }
 
-    pub fn from(source: &str) -> Manifest {
-        toml::from_str(source)
+    pub fn from(source: &str) -> Option<Manifest> {
+        // TODO: error handling
+        toml::from_str(source).ok()
     }
 }
