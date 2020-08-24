@@ -3,10 +3,11 @@ use structopt::StructOpt;
 
 #[derive(StructOpt, Debug)]
 pub enum Command {
-    #[structopt(about = "Creates a new Passerine project")]
+    #[structopt(about = "Creates a new Passerine package")]
     New,
     // Update,
     // Publish,
+    #[structopt(about = "Run the specified package")]
     Run,
     // Test,
     // Bench,
@@ -17,12 +18,9 @@ pub enum Command {
 #[derive(StructOpt, Debug)]
 #[structopt(no_version, about)]
 pub struct Aspen {
-    #[structopt(flatten)]
-    command: Command,
+    #[structopt(subcommand)]
+    pub command: Command,
 
     #[structopt(parse(from_os_str))]
-    project: Option<PathBuf>, // if `None` assume cwd
-
-    #[structopt(short, long)]
-    verbose: bool,
+    pub package: Option<PathBuf>,
 }

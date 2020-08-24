@@ -15,9 +15,27 @@ pub mod bench;
 pub mod doc;
 pub mod debug;
 
-use cli::Aspen;
+use std::env::current_dir;
+use crate::cli::{Aspen, Command};
+
+pub const MANIFEST:   &str = "Aspen.toml";
+pub const SOURCE:     &str = "src";
+pub const ENTRYPOINT: &str = "main.pn";
 
 fn main() {
     let args = Aspen::from_args();
-    println!("{:?}", args);
+
+    // package root is the cwd if not specified
+    let path = match args.package {
+        Some(p) => p,
+        None => current_dir()
+            .expect("Could not retrieve current working directory"),
+    };
+
+    let result = match args.command {
+        Command::New => new::new(path),
+        Command::Run => run::run(path),
+    };
+
+    if let Err(r) = result { eprintln!("{}", r); }
 }

@@ -39,7 +39,7 @@ impl Manifest {
         }
     }
 
-    pub fn from(source: &str) -> Option<Manifest> {
+    pub fn parse(source: &str) -> Option<Manifest> {
         // TODO: error handling
         toml::from_str(source).ok()
     }
