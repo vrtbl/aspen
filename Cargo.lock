@@ -10,17 +10,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "aspen"
-version = "0.1.0"
-dependencies = [
- "passerine",
- "semver",
- "serde",
- "structopt",
- "toml",
-]
-
-[[package]]
 name = "atty"
 version = "0.2.14"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -87,6 +76,17 @@ name = "passerine"
 version = "0.6.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "115c9debc19817a739060149c3b2bcbd495db47f96a599207fdec9fc8326f196"
+
+[[package]]
+name = "passerine-aspen"
+version = "0.1.0"
+dependencies = [
+ "passerine",
+ "semver",
+ "serde",
+ "structopt",
+ "toml",
+]
 
 [[package]]
 name = "proc-macro-error"
