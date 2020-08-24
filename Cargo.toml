@@ -1,6 +1,6 @@
 [package]
 name = "aspen"
-version = "0.0.1"
+version = "0.1.0"
 authors = ["Isaac Cayton (slightknack) <slightknack@gmail.com>"]
 edition = "2018"
 description = "Passerine's package manager"
