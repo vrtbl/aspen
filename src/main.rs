@@ -1,4 +1,3 @@
-use passerine;
 use structopt::StructOpt;
 
 // argument parser and configuation
