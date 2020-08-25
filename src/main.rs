@@ -3,6 +3,7 @@ use structopt::StructOpt;
 // argument parser and configuation
 pub mod cli;
 pub mod manifest;
+pub mod status;
 
 // command implementations
 pub mod new;
@@ -14,27 +15,22 @@ pub mod bench;
 pub mod doc;
 pub mod debug;
 
-use std::env::current_dir;
-use crate::cli::{Aspen, Command};
+use crate::cli::Aspen;
+use crate::status::Status;
 
 pub const MANIFEST:   &str = "Aspen.toml";
 pub const SOURCE:     &str = "src";
 pub const ENTRYPOINT: &str = "main.pn";
 
 fn main() {
-    let args = Aspen::from_args();
+    println!();
+    let subcommand = Aspen::from_args();
 
-    // package root is the cwd if not specified
-    let path = match args.package {
-        Some(p) => p,
-        None => current_dir()
-            .expect("Could not retrieve current working directory"),
+    let result = match subcommand {
+        Aspen::New(package) => new::new(package.path),
+        Aspen::Run(package) => run::run(package.path),
     };
 
-    let result = match args.command {
-        Command::New => new::new(path),
-        Command::Run => run::run(path),
-    };
-
-    if let Err(r) = result { eprintln!("{}", r); }
+    if let Err(r) = result { Status::fatal().log(r) }
+    println!();
 }

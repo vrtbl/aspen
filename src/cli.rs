@@ -1,26 +1,41 @@
-use std::path::PathBuf;
+use std::{
+    path::PathBuf,
+    ffi::OsStr,
+    env::current_dir,
+};
+
 use structopt::StructOpt;
 
+pub fn package_dir(path: &OsStr) -> PathBuf {
+    return if path == "." {
+        current_dir()
+            .expect("Can not determine package directory")
+    } else {
+        PathBuf::from(path)
+    }
+}
+
 #[derive(StructOpt, Debug)]
-pub enum Command {
-    #[structopt(about = "Creates a new Passerine package")]
-    New,
+pub struct Package {
+    #[structopt(default_value = ".", parse(from_os_str = package_dir))]
+    pub path: PathBuf
+}
+
+#[derive(StructOpt, Debug)]
+#[structopt(
+    name = "Aspen",
+    bin_name = "aspen",
+    about,
+)]
+pub enum Aspen {
+    /// Creates a new Passerine package
+    New(Package),
     // Update,
     // Publish,
-    #[structopt(about = "Run the specified package")]
-    Run,
+    /// Runs the specified package
+    Run(Package),
     // Test,
     // Bench,
     // Doc,
     // Debug,
-}
-
-#[derive(StructOpt, Debug)]
-#[structopt(no_version, about)]
-pub struct Aspen {
-    #[structopt(subcommand)]
-    pub command: Command,
-
-    #[structopt(parse(from_os_str))]
-    pub package: Option<PathBuf>,
 }

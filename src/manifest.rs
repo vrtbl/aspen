@@ -1,7 +1,15 @@
+use std::{
+    fs::File,
+    path::Path,
+    io::Read
+};
+
 use toml;
 use toml::map::Map;
 use serde::{Serialize, Deserialize};
 use semver::Version;
+
+use crate::MANIFEST;
 
 #[derive(Serialize, Deserialize)]
 pub struct Manifest {
@@ -37,6 +45,19 @@ impl Manifest {
             },
             dependencies: Map::new(),
         }
+    }
+
+    pub fn package(path: &Path) -> Result<Manifest, String> {
+        let mut source = String::new();
+        let mut file   = File::open(path.join(MANIFEST))
+            .map_err(|_| "The manifest file could not be found")?;
+        file.read_to_string(&mut source)
+            .map_err(|_| "The manifest file could not be read")?;
+
+        return Ok(
+            Manifest::parse(&source)
+                .ok_or("Could not parse the manifest file")?
+        );
     }
 
     pub fn parse(source: &str) -> Option<Manifest> {

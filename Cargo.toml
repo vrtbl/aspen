@@ -2,14 +2,14 @@
 name = "passerine-aspen"
 version = "0.1.0"
 authors = [
-    "Isaac Cayton (slightknack) <slightknack@gmail.com>",
+    "Isaac Clayton (slightknack) <slightknack@gmail.com>",
     "The Passerine Community",
 ]
 edition = "2018"
 description = "Passerine's package manager"
 license = "MIT"
 readme = "README.md"
-repository = "https://github.com/passerine-lang/aspen"
+repository = "https://github.com/vrtbl/aspen"
 
 [dependencies]
 passerine = "0.6"
@@ -17,3 +17,7 @@ structopt = "0.3.15"
 serde     = { version = "1.0", features = ["derive"] }
 toml      = "0.5"
 semver    = "0.10"
+colored   = "2"
+
+[features]
+no_color = ["colored/no-color"]

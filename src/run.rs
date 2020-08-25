@@ -6,14 +6,19 @@ use passerine::{
     vm::vm::VM,
 };
 
-use crate::ENTRYPOINT;
+use crate::{
+    SOURCE,
+    ENTRYPOINT,
+    manifest::Manifest,
+};
 
 pub fn run(path: PathBuf) -> Result<(), String> {
     // just one file, for now
+    let manifest = Manifest::package(&path)?;
     let file = path.join("src").join(ENTRYPOINT);
 
     let source = Source::path(file)
-        .map_err(|_| "Could not open source")?;
+        .map_err(|_| format!("Could not find source entrypoint '{}/{}'", SOURCE, ENTRYPOINT))?;
     println!("source: {:#?}", source);
 
     let tokens = lex(source)
@@ -31,5 +36,5 @@ pub fn run(path: PathBuf) -> Result<(), String> {
     // vm.run(bytecode)
     //     .map_err(|e| e.to_string())?;
 
-    Ok(())
+    Err("Not yet implemented".to_string())
 }
