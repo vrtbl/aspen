@@ -15,14 +15,20 @@ impl Status {
     pub fn warn()    -> Status { Status(Kind::Warn, "Warning") }
     pub fn fatal()    -> Status { Status(Kind::Fatal, "Fatal") }
 
-    pub fn log(&self, message: String) {
-        let tag = match self.0 {
-            Kind::Info    => self.1.white(),
-            Kind::Success => self.1.blue(),
+    fn tag(&self) -> ColoredString {
+        match self.0 {
+            Kind::Info    => self.1.blue(),
+            Kind::Success => self.1.green(),
             Kind::Warn    => self.1.yellow(),
             Kind::Fatal   => self.1.red(),
-        };
+        }.bold()
+    }
 
-        println!("{:>12} {}", tag.bold(), message);
+    pub fn log(&self, message: String) {
+        eprintln!("{:>12} {}", self.tag(), message);
+    }
+
+    pub fn display(&self, message: String) {
+        println!("{} {}", self.tag(), message);
     }
 }

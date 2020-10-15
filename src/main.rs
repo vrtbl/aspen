@@ -23,7 +23,6 @@ pub const SOURCE:     &str = "src";
 pub const ENTRYPOINT: &str = "main.pn";
 
 fn main() {
-    println!();
     let subcommand = Aspen::from_args();
 
     let result = match subcommand {
@@ -31,6 +30,5 @@ fn main() {
         Aspen::Run(package) => run::run(package.path),
     };
 
-    if let Err(r) = result { Status::fatal().log(r) }
-    println!();
+    if let Err(r) = result { Status::fatal().display(r) }
 }

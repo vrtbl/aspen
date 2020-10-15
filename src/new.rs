@@ -45,6 +45,6 @@ pub fn new(package: PathBuf) -> Result<(), String> {
             .map_err(|_| "Could not create source entrypoint")?;
     }
 
-    Status(Kind::Success, "Created").log(format!("The package '{}' was created successfully", name));
+    Status(Kind::Success, "Finished").log(format!("The package '{}' was created successfully", name));
     Ok(())
 }

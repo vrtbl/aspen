@@ -12,12 +12,16 @@ readme = "README.md"
 repository = "https://github.com/vrtbl/aspen"
 
 [dependencies]
-passerine = "0.6"
+# passerine = "0.6"
+passerine = { path = "../passerine" }
 structopt = "0.3.15"
 serde     = { version = "1.0", features = ["derive"] }
 toml      = "0.5"
 semver    = "0.10"
 colored   = "2"
+#
+# [patch.crates-io]
+# passerine = { path = "../passerine" }
 
 [features]
 no_color = ["colored/no-color"]
