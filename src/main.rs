@@ -30,5 +30,5 @@ fn main() {
         Aspen::Run(package) => run::run(package.path),
     };
 
-    if let Err(r) = result { Status::fatal().display(r) }
+    if let Err(r) = result { Status::fatal().log(&r) }
 }

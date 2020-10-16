@@ -24,11 +24,19 @@ impl Status {
         }.bold()
     }
 
-    pub fn log(&self, message: String) {
-        eprintln!("{:>12} {}", self.tag(), message);
-    }
+    pub fn log(&self, message: &str) {
+        let lines = message.lines().collect::<Vec<&str>>();
+        let multiline = lines.len() > 1;
+        if multiline { eprintln!() }
 
-    pub fn display(&self, message: String) {
-        println!("{} {}", self.tag(), message);
+        let mut tag = self.tag();
+        let blank   = " ".repeat(tag.len()).hidden();
+
+        for line in lines {
+            eprintln!("{:>8} {}", tag, line);
+            tag = blank.clone();
+        }
+
+        if multiline { eprintln!() }
     }
 }

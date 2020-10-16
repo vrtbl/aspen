@@ -20,14 +20,9 @@ pub fn run(path: PathBuf) -> Result<(), String> {
     let source = Source::path(file)
         .map_err(|_| format!("Could not find source entrypoint '{}/{}'", SOURCE, ENTRYPOINT))?;
 
-    let tokens = lex(source)
-        .map_err(|e| e.to_string())?;
-
-    let ast = parse(tokens)
-        .map_err(|e| e.to_string())?;
-
-    let bytecode = gen(ast)
-        .map_err(|e| "\n".to_string() + &e.to_string())?;
+    let tokens    =   lex(source).map_err(|e| e.to_string())?;
+    let ast       = parse(tokens).map_err(|e| e.to_string())?;
+    let bytecode  =      gen(ast).map_err(|e| e.to_string())?;
 
     let mut vm = VM::init();
     vm.run(Closure::wrap(bytecode))

@@ -19,7 +19,7 @@ pub fn new(package: PathBuf) -> Result<(), String> {
         .map_err(|_| "Unable to create package directory")?;
 
     if package.join(MANIFEST).is_file() {
-        Status::warn().log(format!("The manifest file ({}) has already been created", MANIFEST))
+        Status::warn().log(&format!("The manifest file ({}) has already been created", MANIFEST))
     } else {
         // write the manifest
         let manifest = Manifest::new(name.clone());
@@ -31,7 +31,7 @@ pub fn new(package: PathBuf) -> Result<(), String> {
     }
 
     if package.join(SOURCE).is_dir() {
-        Status::warn().log(format!("The source directory ({}/) has already been created", SOURCE))
+        Status::warn().log(&format!("The source directory ({}/) has already been created", SOURCE))
     } else {
         // create the source directory
         fs::create_dir(package.join(SOURCE))
@@ -39,12 +39,12 @@ pub fn new(package: PathBuf) -> Result<(), String> {
     }
 
     if package.join(SOURCE).join(ENTRYPOINT).is_file() {
-        Status::warn().log(format!("The source entrypoint ({}/{}) has already been created", SOURCE, ENTRYPOINT));
+        Status::warn().log(&format!("The source entrypoint ({}/{}) has already been created", SOURCE, ENTRYPOINT));
     } else {
         fs::write(package.join(SOURCE).join(ENTRYPOINT), "print \"Hello, Passerine!\"\n")
             .map_err(|_| "Could not create source entrypoint")?;
     }
 
-    Status(Kind::Success, "Finished").log(format!("The package '{}' was created successfully", name));
+    Status(Kind::Success, "Finished").log(&format!("The package '{}' was created successfully", name));
     Ok(())
 }

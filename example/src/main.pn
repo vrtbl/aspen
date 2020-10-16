@@ -1,1 +1,7 @@
-print "Hello, Passerine!"
+loop = ()
+loop = x -> {
+    print x
+    loop x
+}
+
+loop "Hello"
