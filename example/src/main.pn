@@ -1,7 +1,9 @@
 pi = 3.14
+printpi = x -> print pi
 
-w = q -> {
-    print q pi
+redef = ()
+redef = w -> {
+    w (printpi ())
 }
 
-w (x -> { x; () })
+redef printpi
