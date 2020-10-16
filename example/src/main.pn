@@ -1,9 +1,1 @@
-pi = 3.14
-printpi = x -> print pi
-
-redef = ()
-redef = w -> {
-    w (printpi ())
-}
-
-redef printpi
+print "Hello, Passerine!"

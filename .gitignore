@@ -1,5 +1,6 @@
 # Build folders
 /target
+/example
 
 # Backups, rustfmt
 **/*.rs.bk
