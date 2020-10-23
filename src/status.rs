@@ -33,7 +33,7 @@ impl Status {
         let blank   = " ".repeat(tag.len()).hidden();
 
         for line in lines {
-            eprintln!("{:>8} {}", tag, line);
+            eprintln!("{:>12} {}", tag, line);
             tag = blank.clone();
         }
 

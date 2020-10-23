@@ -9,6 +9,7 @@ pub mod status;
 pub mod new;
 pub mod update;
 pub mod publish;
+pub mod add;
 pub mod run;
 pub mod test;
 pub mod bench;

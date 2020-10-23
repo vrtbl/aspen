@@ -2,7 +2,7 @@ use std::path::PathBuf;
 
 use passerine::{
     common::{closure::Closure, source::Source},
-    compiler::{lex, parse, gen},
+    compiler::{lex, parse, desugar, gen},
     vm::vm::VM,
 };
 
@@ -14,7 +14,7 @@ use crate::{
 
 pub fn run(path: PathBuf) -> Result<(), String> {
     // just one file, for now
-    let _manifest = Manifest::package(&path)?;
+    let (_manifest, path) = Manifest::package(&path)?;
     let file = path.join("src").join(ENTRYPOINT);
 
     let source = Source::path(file)
@@ -22,7 +22,8 @@ pub fn run(path: PathBuf) -> Result<(), String> {
 
     let tokens    =   lex(source).map_err(|e| e.to_string())?;
     let ast       = parse(tokens).map_err(|e| e.to_string())?;
-    let bytecode  =      gen(ast).map_err(|e| e.to_string())?;
+    let cst       =  desugar(ast).map_err(|e| e.to_string())?;
+    let bytecode  =      gen(cst).map_err(|e| e.to_string())?;
 
     let mut vm = VM::init();
     vm.run(Closure::wrap(bytecode))

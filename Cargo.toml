@@ -21,8 +21,12 @@ semver    = "0.10"
 colored   = "2"
 
 [dependencies.passerine]
-version = "0"
+version = "0.7.1"
 path = "../passerine"
 
 [features]
 no_color = ["colored/no-color"]
+
+[[bin]]
+name = "aspen"
+path = "src/main.rs"

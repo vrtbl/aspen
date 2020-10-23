@@ -47,17 +47,32 @@ impl Manifest {
         }
     }
 
-    pub fn package(path: &Path) -> Result<Manifest, String> {
+    pub fn package(mut path: &Path) -> Result<(Manifest, &Path), String> {
         let mut source = String::new();
-        let mut file   = File::open(path.join(MANIFEST))
-            .map_err(|_| "The manifest file could not be found")?;
-        file.read_to_string(&mut source)
+        let mut file = None;
+
+        // search up path for manifest
+        while let None = file {
+            match File::open(path.join(MANIFEST)) {
+                Err(_) => {
+                    path = path.parent()
+                        .ok_or("The manifest file could not be found")?;
+                },
+                Ok(f) => {
+                    file = Some(f);
+                },
+            };
+
+        }
+
+        file.unwrap().read_to_string(&mut source)
             .map_err(|_| "The manifest file could not be read")?;
 
-        return Ok(
+        return Ok((
             Manifest::parse(&source)
-                .ok_or("Could not parse the manifest file")?
-        );
+                .ok_or("Could not parse the manifest file")?,
+            path,
+        ));
     }
 
     pub fn parse(source: &str) -> Option<Manifest> {

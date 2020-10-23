@@ -35,6 +35,7 @@ cargo run apsen -q -- run example
 | **`new`** | Creates a new Passerine package.                          |
 | `publish` | Publishes package to the registries in `Aspen.toml`.      |
 | `pull`    | Pulls fresh packages from the registries in `Aspen.toml`. |
+| `add`     | Adds a dependency to `Aspen.toml`.                        |
 | **`run`** | Builds and runs the corresponding Passerine package.      |
 | `test`    | Builds and runs the package's tests.                      |
 | `bench`   | Builds and runs the package's benchmarks.                 |
