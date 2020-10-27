@@ -1,1 +1,15 @@
-print
+zero = f -> x -> x
+one = f -> x -> f x
+succ = n -> f -> x -> f (n f x)
+
+p = (x -> print x)
+
+three = succ (succ (succ zero))
+
+something = succ three
+
+zero p ()
+print "---"
+one p ()
+print "---"
+something p ()
