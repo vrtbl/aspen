@@ -1,5 +1,7 @@
-syntax 'for x 'in y {}
+syntax 'loop do {
 
-syntax a 'swap b {}
+}
 
-for in
+loop {
+    print "hello"
+}
