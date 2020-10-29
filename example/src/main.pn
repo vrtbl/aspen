@@ -1,5 +1,5 @@
-syntax 'pi {
-    3.14
-}
+syntax 'for x 'in y {}
 
-print pi
+syntax a 'swap b {}
+
+for in
