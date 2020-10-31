@@ -24,19 +24,22 @@ impl Status {
         }.bold()
     }
 
+    fn multiline(&self, lines: Vec<&str>) {
+        eprint!("\n{} ", self.tag());
+        // let blank   = " ".repeat(tag.len()).hidden();
+        for line in lines {
+            eprintln!("{}", line);
+        }
+        eprintln!()
+    }
+
     pub fn log(&self, message: &str) {
         let lines = message.lines().collect::<Vec<&str>>();
-        let multiline = lines.len() > 1;
-        if multiline { eprintln!() }
 
-        let mut tag = self.tag();
-        let blank   = " ".repeat(tag.len()).hidden();
-
-        for line in lines {
-            eprintln!("{:>12} {}", tag, line);
-            tag = blank.clone();
+        if lines.len() > 1 {
+            self.multiline(lines);
+        } else {
+            eprintln!("{:>12} {}", self.tag(), message);
         }
-
-        if multiline { eprintln!() }
     }
 }

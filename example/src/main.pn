@@ -1,7 +1,3 @@
-syntax 'loop do {
+syntax a 'calls b { b a }
 
-}
-
-loop {
-    print "hello"
-}
+"hello world" calls { x -> print x }
