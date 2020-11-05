@@ -1,3 +1,25 @@
-syntax a 'calls b { b a }
+zero = f -> x -> x
+one  = f -> x -> f x
+succ  = n -> f -> x -> f (n f x)
 
-"hello world" calls { x -> print x }
+show_number = n -> {
+    n (x -> print x) "|"
+    print "-"
+}
+
+syntax 'loop do {
+    loop = 7.0
+    loop = x -> y -> {
+        do
+        print "ok"
+        loop y x
+    }
+    loop () ()
+}
+
+counter = zero
+
+loop {
+    counter = succ counter
+    show_number counter
+}
