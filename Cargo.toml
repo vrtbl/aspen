@@ -1,27 +1,25 @@
 [package]
 name = "passerine-aspen"
-version = "0.2.1"
+version = "0.3.0"
 authors = [
     "Isaac Clayton (slightknack) <slightknack@gmail.com>",
     "The Passerine Community",
 ]
 edition = "2018"
-description = "Passerine's package manager"
+description = "Passerine's package manager."
 license = "MIT"
 readme = "README.md"
 repository = "https://github.com/vrtbl/aspen"
 
 [dependencies]
-# passerine = "0.6"
-# passerine = { path = "../passerine" }
-structopt = "0.3.15"
+structopt = "0.3"
 serde     = { version = "1.0", features = ["derive"] }
 toml      = "0.5"
 semver    = "0.10"
 colored   = "2"
 
 [dependencies.passerine]
-version = "0.7.1"
+version = "0.8"
 path = "../passerine"
 
 [features]
