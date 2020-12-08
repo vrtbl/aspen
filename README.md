@@ -2,9 +2,15 @@
 Passerine's package manager.
 
 ## Getting Started
-We plan to add a script to install the passerine toolchain
-and binaries on your `$PATH`.
-However, for now, we recommend you just install `aspen` by hand.
+To install the `aspen` command, run this in the shell of your choice:
+
+```zsh
+sh <(curl -sSf https://www.slightknack.dev/static/install.sh)
+```
+
+This requires git and a recent version of Cargo to work.
+You can inspect the contents of `install.sh` first if you want,
+we're not trying to play any tricks on you.
 
 To try out Passerine:
 
