@@ -34,6 +34,7 @@ pub enum Aspen {
     // Publish,
     /// Runs the specified package
     Run(Package),
+    // Repl,
     // Test,
     // Bench,
     // Doc,

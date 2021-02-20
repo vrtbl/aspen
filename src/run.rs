@@ -25,9 +25,8 @@ pub fn run(path: PathBuf) -> Result<(), String> {
     let cst       =  desugar(ast).map_err(|e| e.to_string())?;
     let bytecode  =      gen(cst).map_err(|e| e.to_string())?;
 
-    let mut vm = VM::init();
-    vm.run(Closure::wrap(bytecode))
-        .map_err(|e| e.to_string())?;
+    let mut vm = VM::init(Closure::wrap(bytecode));
+    vm.run().map_err(|e| e.to_string())?;
 
     Ok(())
 }

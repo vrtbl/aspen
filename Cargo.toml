@@ -1,6 +1,6 @@
 [package]
 name = "passerine-aspen"
-version = "0.3.0"
+version = "0.4.0"
 authors = [
     "Isaac Clayton (slightknack) <slightknack@gmail.com>",
     "The Passerine Community",
@@ -19,7 +19,7 @@ semver    = "0.10"
 colored   = "2"
 
 [dependencies.passerine]
-version = "0.8"
+version = "0.9"
 path = "../passerine"
 
 [features]

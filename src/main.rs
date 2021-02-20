@@ -11,6 +11,7 @@ pub mod update;
 pub mod publish;
 pub mod add;
 pub mod run;
+pub mod repl;
 pub mod test;
 pub mod bench;
 pub mod doc;
@@ -29,6 +30,7 @@ fn main() {
     let result = match subcommand {
         Aspen::New(package) => new::new(package.path),
         Aspen::Run(package) => run::run(package.path),
+        // Aspen::Repl         => { repl::repl(); return },
     };
 
     if let Err(r) = result { Status::fatal().log(&r) }
