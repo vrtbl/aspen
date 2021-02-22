@@ -5,7 +5,7 @@ Passerine's package manager.
 To install the `aspen` command, run this in the shell of your choice:
 
 ```zsh
-sh <(curl -sSf https://www.slightknack.dev/static/install.sh)
+sh <(curl -sSf https://www.passerine.io/install.sh)
 ```
 
 This requires git and a recent version of Cargo to work.
