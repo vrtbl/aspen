@@ -1,6 +1,6 @@
 [package]
 name = "passerine-aspen"
-version = "0.4.0"
+version = "0.5.0"
 authors = [
     "Isaac Clayton (slightknack) <slightknack@gmail.com>",
     "The Passerine Community",
