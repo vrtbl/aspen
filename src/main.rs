@@ -20,7 +20,7 @@ pub mod debug;
 use crate::cli::Aspen;
 use crate::status::Status;
 
-pub const MANIFEST:   &str = "Aspen.toml";
+pub const MANIFEST:   &str = "aspen.toml";
 pub const SOURCE:     &str = "src";
 pub const ENTRYPOINT: &str = "main.pn";
 
