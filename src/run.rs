@@ -3,7 +3,7 @@ use std::path::PathBuf;
 use passerine::{
     common::{closure::Closure, source::Source},
     compiler::{lex, parse, desugar, gen, hoist},
-    vm::vm::VM,
+    vm::VM,
 };
 
 use crate::{
