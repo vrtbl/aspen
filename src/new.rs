@@ -41,7 +41,7 @@ pub fn new(package: PathBuf) -> Result<(), String> {
     if package.join(SOURCE).join(ENTRYPOINT).is_file() {
         Status::warn().log(&format!("The source entrypoint ({}/{}) has already been created", SOURCE, ENTRYPOINT));
     } else {
-        fs::write(package.join(SOURCE).join(ENTRYPOINT), "print \"Hello, Passerine!\"\n")
+        fs::write(package.join(SOURCE).join(ENTRYPOINT), "println \"Hello, Passerine!\"\n")
             .map_err(|_| "Could not create source entrypoint")?;
     }
 
