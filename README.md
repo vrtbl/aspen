@@ -1,12 +1,19 @@
+> **Note**: We have moved `aspen` to the Passerine monorepo, [which can be found here](https://github.com/vrtbl/passerine). As a result, this repository is out of date and has been archived.
+
 # aspen
 Passerine's package manager.
 
 ## Getting Started
 To install the `aspen` command, run this in the shell of your choice:
 
-```zsh
+```bash
 bash <(curl -sSf https://www.passerine.io/install.sh)
 ```
+
+> **Note**: The above shell script no longer works. We recommend you use this instead:
+> ```
+> cargo install passerine-aspen
+> ```
 
 This requires git and a recent version of Cargo to work.
 You can inspect the contents of `install.sh` first if you want,
